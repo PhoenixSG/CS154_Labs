@@ -1,0 +1,24 @@
+We mainly saw the differences between Object-Oriented Programming and Procedural Programming.
+
+OOP seemed more comfortable to use and more visualisable.
+Procedural programs were longer and more specific.
+Since only structs are possible in procedural programming, we were required to declare functions separately and each function had the struct pointer as an argument.
+With OOP we were able to define the functiosn within the class and several functions did not contain arguments, they could directly access the data members.
+
+An object seemed more complete in itself in OOP, while in Procedural programming, the control went from one function to another.
+
+In program1.cpp, I have implemented a dice class which has all the required functions, from making a new roll to displaying results.
+For program1.c, I had to do the same but the functions were not packaged together as in a class. There was no notion of public and private as well.
+
+Similarly for program2.cpp, I implemented a class called record containing all the members and functions required for the program.
+But, for program2.c, the functions were again separate and this time there was no struct required, since there was a single array as data member
+
+
+Overall I feel that OOP is much more comfortable while formulating real life systems,
+while Procedural would be faster since it is more direct.
+ 
+
+
+Thank you.
+Shashwat Garg
+200050130

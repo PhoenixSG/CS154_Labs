@@ -1,0 +1,103 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations while understanding and implementing programs in prolog using the logic paradigm, Lab 12, CS154.
+
+It was a great experience. At first I was overwhelmed by all the new rules and the new dominating language but slowly I began to grasp all the ideas of the same.
+I have completed all the programs and here are my observations regarding the same.
+
+
+
+count.pl 
+This was a simple program. It takes in 3 variables.
+List, Element to be counted, X (for returning final answer).
+
+Sample-
+input-   countelem([1,2,3,1,1,1], 1, X).
+	output- X = 4 
+
+There are 2 main recursive calls. When the head matches the element being counted, count is increased by 1. Otherwise the head is chopped off and the count is unchanged.
+Base case is when the list is empty and the count is 0.
+
+
+
+
+reverse.pl- 
+This program takes in 3 inputs. It is modified to have 3 inputs inside the code.
+The recursive call is to take input’s head and attach it to output. Since the process is done step by step, we get a reversed list at the end. Initial output is an empty list.
+Base case is when input becomes [ ] and the output matches the answer variable.
+
+Sample-
+input-   revlist([1,2,3,45],X).
+	output- X = [45,3,2,1]
+
+
+
+
+palindrome.pl-
+This is just an extension of the reverse.pl program. L is a palindrome if the reverse of L is L. Thus this program follows the previous program’s logic.
+
+Sample-
+input-   palindrome([1,2,3,4,3,2,1]).
+	output- yes
+
+input-   palindrome([1,2,3,4,3,2]).
+	output- no
+
+
+
+
+substring.pl-
+This again has two recursive calls for each case. If the heads of both sub and main string match, the same function is called with the heads chopped off.
+If not then only the main strings head is chopped. This way, if the sub string reaches [ ] first, the statement is true, which is our base case. Otherwise it's not a substring.
+
+Sample-
+input-   substring([1,2,3], [4,543,1,2,3, 23]).
+	output- true
+
+input-  substring([1,2,3], [4,543, 23]). 
+	output- no
+
+
+
+
+
+minimum.pl-
+The base case here is when only a single element in the list is remaining.
+The recursive call is again one of the two. This time we look at the top two elements. We keep the lower one in the list and remove the larger one.
+This way we keep removing non-minimum elements in each call and the base case attaches the only remaining value, minimum, to the variable X.
+
+Sample-
+input-   min([2,3,4,5,1,23,47],X).
+	output- X=1
+
+
+
+
+factorial.py-
+This was a simple recursive function, Base case is factorial of 0 is 1 and general recursive call is simply using two updates two the variables, namely
+X is A+1, Y is B*X
+
+Sample-
+input-   factorial(12,X).
+	output- X=479001600
+
+
+
+Extra - append.pl-
+This was not implemented completely. I am using the logic of reverse program and thus even though the list is getting appended, it is also getting reversed.
+The non reverse logic brings in a lot of extra [ ]. I still haven't found the perfect logic yet.
+
+Sample-
+input-   appendlist([1,2,3],[4,5,6],X).
+	output- [3,2,1,4,5,6]
+
+Alternate code-
+input-   appendlist([1,2,3],[4,5,6],X). 
+	output- [[[[4,5,6]|1]|2]|3]
+
+
+
+
+I will try to improve on this extra code but the initial 6 programs are working correctly.
+This was a very tough lab, perhaps the toughest due to immediate introduction to a new language and paradigm, but I am happy that I have been able to do it on my own, though it took me like 5-6 hours.
+
+If you have been, thank you for reading…
+Shashwat Garg

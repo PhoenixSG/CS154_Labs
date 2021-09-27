@@ -1,0 +1,19 @@
+len([],0).
+len([H|T],N):-len(T,M), N is 1+M.
+%list is represented as [head|tail]
+%head is an element
+%tail is rest of the list-- not an element
+----------------------------------------------
+sum([],0).
+sum([H|T],N):-sum(T,M), N is H+M.
+---------------------------------------------
+ismember(X,[X|T]).
+ismember(X,[Y|T]):-ismember(X,T).
+---------------------------------------------
+last([X],X).
+last([X|Y],L):-last(Y,L).
+---------------------------------------------
+mother(ron,tracy).
+mother(tracy,nancy).
+grandma(X,Y):-mother(X,Z),mother(Z,Y).
+

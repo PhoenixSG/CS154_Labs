@@ -1,0 +1,49 @@
+Observations.txt
+
+Hello, I am Shashwat Garg, 200050130.
+Below are my observations while understanding various python programs and concepts of Higher-order functions in Lab 10, CS154.
+
+We learnt about basic rules of variables, assignments, simple operations, print and comments.
+We learnt the flexibility of not havign data types.
+
+Some specific things were-
+    Use of lists, and ease of creating and dealing with lists. The overloaded operation of + with lists, used to append one list to another.
+    For loops- There are no {}, indentation in important
+    'in' is a membership operator. It iterates over the elements of the list. No explicit index. Avoid updating and termination condition. No need for variables.
+    iterating using 'in' over characters of a string
+    use of range() function, and various overloaded cases
+    'else' after for and while loop
+    sets and their operations
+    basic functions
+    Idea of higher order functions
+    Idea of clear, delete and copy functions
+
+    Higher order functions
+    Lambda functions
+
+Python Word Counter Program-
+
+While executing, please give the name of the file to be read as a command prompt, a sample.txt is provided.
+
+This method of counting unique occurrences of a word in a file immediately reminded me of maps from c++.
+I searched the equivalent of maps in python and found dictionaries.
+
+Dictionary is basically a set of key:value pairs.
+We can easily use a dictionary to keep track of all elements.
+
+I initially tried to simply iterate directly over the file, which is demonstrated in my code by the program in attempt1.
+This failed since this way the python was reading one paragraph at a time.
+
+To correct this, I created a loop iterating over x.split().
+This way, the program was now reading one word at a time.
+The program is now capable of dealing with all kinds of white spaces.
+It keeps track of all words using a dictionary. This was attempt2.
+
+Now, to make it even more better, in attempt 3, I used the re.split function which enabled me to filter out unnecessary punctuations like , ( ) . _ “ ‘ - etc.
+
+Finally, I made the shortest program I could make by removing the unnecessary variables in attempt 4.
+This is only 10 lines long and uses the least number of variables, only two iterators, x and i.
+Mainly, functions are used to specify range of the loops.
+
+
+

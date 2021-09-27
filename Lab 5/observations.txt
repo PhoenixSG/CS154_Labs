@@ -1,0 +1,159 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations for the 10 programs uploaded by sir, as well as my two programs my1.cpp and my2.cpp.
+
+
+
+prog1.cpp-
+This program will give a compilation error because we are trying to initialise an object of an abstract class. The class A contains a pure virtual function f() and thus we cannot create objects of that class.
+Still, we can create pointers to that class’ objects though. Thus A* ap; is allowed, while A a; is not.
+
+
+
+prog2.cpp-
+Here we have removed the error line from prog1.cpp and thus the program compiles fine, but we encounter a runtime error (segmentation fault).
+This is because the program tries to use the uninitialised pointer ap to access member functions of class A when the object is not even defined!
+This does not give a compiler error, because the C++ compiler doesn’t check for this.
+But, during runtime the pointer ap tries to access some restricted or undefined location, which causes the error.
+There is also a (commented out) error of using ‘->’ with objects rather than ‘.’ to access member functions.
+
+
+
+prog3.cpp-
+This program compiles and runs correctly.
+Both the pointers ap and bp point to an object of B class. This is allowed for ap because it is a pointer of class A which is the superclass of B.
+Since the functions in A are defined as virtual, even when we use the pointer of class A to call member functions, it calls the functions of class B.
+This call required the respective member functions to be declared in A, though they could have been defined in only B as well.
+The next few lines simply use an object of class B to access the member functions.
+Thus, we get the expected output where all functions of B are called, namely-
+B::f
+B:g
+B::f
+B:g
+
+
+
+prog4.cpp-
+Here we have modified the class A. It is no longer abstract and we can instantiate objects of class A.
+The program involves some basic declarations of objects of class A and B, along with creating a pointer to an object of class A and B each.
+Since all functions are defined in the respective classes, the output is simple and as expected.
+The pointers and objects corresponding to A call functions of A and the pointers and objects corresponding to B call functions of B. The output is-
+A::f
+A::g
+A::f
+A::g
+B::f
+B:g
+
+
+
+prog5.cpp-
+This is a very interesting program. The initial part is the same as that of prog4.cpp. But the second half demonstrates the usage of the assignment operator with the objects and pointers of superclass and subclass.
+The compiler only allows assignment of subclass pointers to superclass pointers and only assignment of subclass objects to superclass objects, since it follows the is-a relation rule. B and A follow is-a relation.
+Thus we can do ap=bp; and a=b; in this program. The other way around, namely bp=ap; or b=a; throws compilation errors.
+Now, the pointer ap holds the address held by bp, of an object of class B.
+Since, the functions in class A are virtual, the function of B are called and we get the output as-
+B::f
+B:g
+The statement a=b; is special, it only copies the data members defined in A from b and stores them in a. It does not affect the newly defined data members in B and does not affect any member functions.
+Thus even though the data of a might have been from b, the functions of A are only called. The output is thus-
+A::f
+A::g
+Finally we have the simple code of object of B calling its member functions.
+This was a nice program demonstrating the intricacies of the assignment operator with respect to inherited classes.
+
+
+
+prog6.cpp-
+This program increases the breadth of our abstraction by introducing another class C inheriting from class A.
+C has a new function k() which is not defined in A previously. Also it doesn’t contain a definition for g().
+We observe that if we use a pointer of C to call the function g(), the function g() of A is called, since g() does not have an implementation in C.
+Also, we observe a limitation of assigning pointers. Even if we assign a pointer of type C* to a pointer of type A*, we cannot use the A* pointer to access the function k(), even though it is defined in C.
+This is because the function k(), has not been declared in A. From the view of pointer of A*, it doesn't know any function k(), and thus it returns a compilation error.
+This can be expected from our previously established rules, that any function being called must be declared in parent class and defined at least once in the chain from object’s class up to the pointer’s type class.
+
+
+
+prog7.cpp-
+This program demonstrates two new ideas, calling functions from within functions and assignment of uninitialised variables.
+The f() function in class A calls the function g(), and the k() function in class C calls the function f().
+We observe that the effect of calling g() from f() where f is being called by ptr->f();, is the same as calling ptr->g() directly at the required place.
+The control flow imitates the same rules, namely-
+The scope is determined by the pointer type and the earliest definition up the chain of inherited classes is used.
+Thus, while calling g() from C, the g() defined in A is called.
+The second part assigns the uninitialised pointer of type B* to ap and thus it leads to runtime error (segmentation fault), since no object has been created, like in prog2.cpp.
+
+
+
+prog8.cpp-
+Here, our program has increased in depth. We see that the class C is inheriting from B rather than from A. This program further demonstrates the flow of control in inherited classes.
+We initially define and initialise a pointer of type C*
+Then we assign it to pointer of class B* and finally to A*.
+We then use pointer of A* to call the member functions. Since all functions are defined as virtual, the pointer goes to the latest definition.
+Thus ap->f(); calls C::f(), while ap->g() calls B::g(), since g() does not have a definition in C.
+
+
+
+prog9.cpp-
+This program introduces constructors for classes as well. Initially, we have a pointer of type C*, whose data member z has been initialised to 10, and the data member of its parent class B is set to z+10 ie. y=20.
+Further the constructor of A is called by B and thus it gets initialised to y+10 ie. x=30.
+This shows how data corresponding to data members of parent class are stored in the child class.
+The program initially calls the functions of C, which are all defined completely within C. cp->g() leads to g() function of class B being called, since it is not defined in C.
+Then the functions of B are called from a pointer of type B*, which give the expected results.
+We then assign the pointer of C* to the pointer of B*, which is allowed since C is the child class of B. The virtual functions of B lead to the functions of C being directly called.
+The pointer of type A* is created which functions simply like a normal class, since it is the grandparent class in the program. 
+We then assign the pointer of type B* to the pointer of type A*, which was initially holding information about an object of class C.
+The f() and g() functions are called which are implemented from class C and B respectively, again due to defining each function as virtual.
+Each object only accesses its own data members, or the data members in its parent class, which is evident from the numbers in the output.
+
+
+
+prog10.cpp-
+This program brings back the idea of using the assignment operator to assign a member of the derived class to a member of the parent class, from prog5.cpp.
+The initial lines simply have objects calling their respective member functions, which returns expected outputs.
+Then we do a=b;
+This assigns the value of data members of class A in b to the corresponding data members of a. The newly defined data members of b and member functions are untouched.
+Thus the value of x changes from 100 to the 210 (specified by constructor of b). Thus, we can explain the output.
+
+
+
+
+
+
+
+my1.cpp-
+This program demonstrates the breadth of inheritance. I have inherited 3 classes, called Fish, Bird and Mammal from the parent class of Animal.
+Only the pointer of Animal* is used to call the required functions using dynamic binding.
+The Animal class has pure virtual functions called move and eat, since they are common to all types of animals, but each animal performs these tasks differently.
+Each derived class gives a proper implementation to the move and eat functions depending upon the choice of user.
+Each inherited class has different data members, Fish has fins and gills, Birds have wings and claws, Mammals have legs.
+All these members are initialised using the constructor of the respective class.
+The user decides which animal it wants to know about and the required object is created on the heap and accessed by the Animal* pointer.
+
+This program demonstrates Runtime Polymorphism and Inheritance
+
+
+
+
+
+
+
+my2.cpp-
+This program demonstrates the depth of inheritance and dynamic binding. It doesn’t model any real system like the previous case, but it demonstrates the flow of control much better, due to absence of realistic limitations which arise while modelling real systems.
+I have implemented 4 classes. D which inherits from C, which inherits from B, which in turn inherits from A.
+Each class has a data member, namely d, c, b, a.
+The 4 functions of show_a(), show_b, show_c() and show_d() are uniquely written such that various aspects of dynamic binding and inheritance rules can be shown.
+
+There are pointers each of type aptr, bptr, cptr and dptr.
+
+dptr can access all 4 functions since parent class functions are available in subclass.
+dptr can be assigned to cptr since the pointer of the parent class can also store the address of a subclass.
+Further, cptr can access show_d() despite show_d() not being declared in C. This is because show_d() was declared, in parent class of C, ie. B, and that is sufficient for the program.
+
+I did not know about this. From the lectures, I got the impression that the function which we are calling via a pointer needs to be declared in the pointer type class, even though it may not be defined. But as it turns out, we don't need the declaration in the specific class itself. It can be there in the parent class of the specific class.
+
+Similarly, cptr can be assigned to bptr since the pointer of the parent class can also store the address of a subclass & bptr can access show_c() for the same reasons as above.
+
+Finally, bptr can be assigned to aptr. But aptr cannot access show_d(), since there is no declaration of show_d() in A (and it doesn't have any parent class).
+
+Thus, this program demonstrates the various rules and properties of inheritance, dynamic binding and the rules of scope and assignment operators.
+
+

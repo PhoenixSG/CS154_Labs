@@ -1,0 +1,107 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations while adding assert statements and identifying bugs in the various codes for Lab 8, CS154.
+
+As per the instructions, our aim this week is not to improve or correct bad code, but to correctly point out bugs using assert statements.
+We do this by pointing out the intent of the programmer before and after different functions are called, ie. the preconditions and postconditions.
+
+
+
+
+just_a_demo_for_practice.cpp
+
+This was the first program which showed use of assert statements. The code was buggy, in the sense that the array was accessing the elements not in its range.
+The assert statement before each array operation made sure that the bug was reported.
+
+Another assertion which can be added here is to assert that the integer being taken as input belongs to some particular range.
+For eg.- since it refers to the index of the array, it must be non negative. Also, it must have an upper limit to prevent stack overflow and thus, segmentation fault. Let's assume the limit to be 1000000.
+
+I have added another assertion to ensure these bugs get reported in case if missing checks in the program.
+
+
+
+
+str2int.cpp
+
+This is the first main program. 
+
+The faulty implementation goes as follows- 
+The string is converted to int character by character while the integer is multiplied by 10 and the next digit is added at each step
+
+Several assertions are possible here. First the string being supplied into the function must be convertible.
+The only way this is possible is if the string has only digits inside it and the integer can be contained inside the int data type.
+Thus we get two assertions, one checks for each character of the string while the other checks for string value being in range of int.
+
+The initial precondition checks for very large strings at the very beginning of the code. It is like an extra check. It is redundant as it would be pointed out later anyways but still, helps remove a lot of useless cases at the beginning.
+The next one checks for vague inputs like 0004 instead of 4, again due to a faulty algorithm.
+The first one is a precondition and is asserted at the beginning of each loop iteration.
+It asserts that the character is between 0 to 9.
+
+The postcondition is called at the end of each loop iteration.
+It checks whether the integer goes out of bound in a clever way, by checking if its value goes negative or decreases after any step.
+
+These two conditions ensure that garbage is not presented to the user.
+Otherwise, any random string can be casted to integer type by this buggy algorithm
+
+
+
+
+collection.cpp
+
+This is a faulty stack program which does not check for preconditions and postconditions and thus generates a lot of bugs.
+
+I have added Several assertions here.
+
+card >= 0 and card <= cap serve as class invariants which are called after every member function. 
+
+pushback function has card< cap as precondition and popback has card>0 as its preconditions.
+The postconditions are the same as class invariants.
+
+The constructor has several assertions checking whether the state of the object is correct after initialisation or not.
+
+cap=sz; was not present in the initial constructor and this prevented the program from moving forward. Comment it out to see the error (triggers an assert statement).
+
+Finally, the main function also has an assertion after taking input from the user. The program does not check for the correctness of the input (it should be 1 or 2) and this results in an assert statement getting triggered.
+
+Similar to previous programs, everything which should be a part of the actual program is actually only present in the assertions.
+As a next step all these issues must be translated into the code as exceptions or algorithm tweaks to enable a correct program covering all types of input and boundary cases gracefully.
+But alas, that is not the part of this lab and we move on.
+
+
+
+substring.cpp
+
+This program finds the index of a substring inside the full string. 
+
+Faults in logic-
+Does not check for valid length of string and substring to find the result.
+Proceeds on even if substring is longer than fullstring
+
+Assertions-
+
+Preconditions- Confirm length of string >= length of substring & length of substring > 0.
+Postconditions- Confirm if value being returned is actually a valid index of the string.
+
+Usually assertion evaluates to false here when the substring entered is longer than the main string.
+The bug us that -1 should be returned here but that is handled by assertion as per the instruction of this lab.
+	
+
+
+
+optional-additional-problem-funnyassert.cpp
+
+I have managed to make my own assert function. It is a preprocessor directive.
+It looks like a function which takes in an argument and then if that argument evaluates to false, it couts that there is an error along with the condition/argument passed into the codeassert().
+
+It works because the preprocessor directive directly substitutes the function with the block of code written alongside it.
+
+Also,
+#arg refers to the exact argument that was passed and
+_LINE_  returns the line number. 
+
+Finally, it calls the abort() function.
+
+This way, I was able to make codeassert work pretty similar to assert.
+
+
+
+
+Thank you for Reading!

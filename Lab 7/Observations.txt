@@ -1,0 +1,18 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations while improving one of my earlier codes in Lab # .
+
+I already had an idea about structured programming. I have not used statements like goto, or thrown exceptions in earlier labs.
+As a result, I dont exactly have a lot to improve in terms of structure of my code.
+
+
+I found that I was lacking in some aspects like putting less comments, or making the functions too specific in many cases.
+I found that though my program was well structured, it was not written with the hope that someone would have to maintain or upgrade that in the future.
+
+To improve upon this aspect, I have improved my code to include more comments, use more variables to promote variations, and also divide functions into even smaller ones.
+This would enable better readability and improve maintainability of the code.
+
+Some improvements are listed here-
+
+1. Added a lot of comments, showing the purpose of every block of code
+2. Removed the setx() and sety() functions and incorporated the code into the constructor to reduce redundancy
+3. The color decision is now handled in the Shape() constructor since color is a part of Shape class
+4. Removed some of redundant MyCircle functions

@@ -1,0 +1,25 @@
+Hello, these are some more programs. Earlier the instructions were to do some programs of the slides, so I did 5.
+Now, the instructions are to do all so I am doing the rest of the programs as well.
+
+mahabharat.pl, cut2.pl-
+
+I typed out both of these programs. They are both working correctly.
+
+-> The first one is a very basic program showing various relations between different atoms.
+We have also defined non-direct relations, like grandparents, grandmother, grandfather and grandchild.
+
+We have been able to define these using some non-conventional methods, using only child and wife relations.
+They thus do not give the whole set of solutions. But whatever solution they give is correct/true.
+
+
+
+-> The second one also has a ! operator. This means that it stops after giving the first correct answer.
+This is very clear from the execution of the program since we see that we do not need to press ; after the first output.
+The program automatically returns yes and closes after first output.
+
+If we remove the ! from the code, then we get 2 answers, ie. the program keeps on backtracking until it goes through all the possibilities.
+
+Thus we learnt about relations and cut operator from these 2 programs.
+
+Thank you!
+

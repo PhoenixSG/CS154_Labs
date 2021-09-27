@@ -1,0 +1,92 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations while analyzing and improving prolog programs, using the Logic paradigm. This is the CS154 Lab 13.
+In this lab we have to make programs having errors and also make correct programs and find the part causing the error, for better understanding of the logic paradigm
+
+
+1. connected_error.pl & connected.pl-
+
+Generating Infinite Recursion Error-
+Using the same name for connected and path. This gave infinite recursion and stack overflow.
+This was because whenever we called connected(A, B), the connected(A,C) and connected(C, B) are called.
+As a result, there is no termination condition due to the connected(A, A) being undefined in the program.
+This sends the program into infinite recursion and causes this error.
+
+Corrections-
+Using different names. We define another function called path which has both a termination condition and defines a proper form of recursion.
+Here we get no infinite recursion since the base case is correctly defined.
+
+Thus, the error causing infinite recursion was using the same variable name and not defining the base case correctly.
+
+
+
+
+
+2. sibling_error.pl & sibling.pl-
+
+Generating Infinite Recursion Error-
+We are using a line in code which says, sibling(X, Y) :- sibling(Y,X).
+This causes errors because the program keeps on calling sibling one after another and leads to infinite recursion calls and thus stack overflow.
+
+Corrections-
+Remove that line. Define the relationship only in terms of parent(A, B). This does not reduce any logical information and facts in our program universe.
+Besides, this works correctly, which indicates that the initial problematic line of code was redundant and causing errors.
+
+Thus, the error causing infinite recursion was not putting a proper base condition on an infinite recursive call.
+Also, we learnt that unnecessary lines of code can cause unwanted errors. We should declare only the required logical facts and relationships and not over define redundant facts.
+
+
+
+
+
+3. Kth_element_error.pl & kth_element.pl
+
+The initial program is working correctly. We will now add some error line to make it infinitely recursive.
+
+Generating Infinite Recursion Error-
+This is due to a minor typo. We are not reducing the size of the list in the recursive call.
+Thus it never reaches the base case and keeps on calling itself, increasing the index number each time.
+
+Corrections-
+This is a simple bug. Just using trace. debugger, I was able to identify the problem and correct it completely.
+So this was our third learning, properly define the recursive call, otherwise you will never terminate your code
+
+
+
+
+
+
+4. reverse_error.pl & reverse.pl-
+
+Logical Error in the code-
+The error is caused due to an incorrect algorithm. In the recursive step, we are calling the last function, which is fine….but the reverse recursive call is incorrect.
+Actually, U is not the reverse of L. U is actually the reverse of the initial list, excluding the last element. This is not captured in this program
+
+Correction-
+This algorithm was not correct and not correctable since the basis of recursion was incorrect. The only method to correct a logical error is to define a new correct algorithm.
+The way I have done it is to implement my own recursive pop function.
+At each step, it takes the topmost element from the left list and attaches it to the right list.
+This way, with each recursive call, the left list keeps getting smaller and the right list keeps on increasing.
+At the end we end up with a reversed list.
+There is a third variable in my program, which functions as the answer variable, since the base case is defined when this third variable and the second list are equal.
+
+This way, this program runs without any exception or error.
+
+
+
+
+
+
+5. Demonstrating cut operator, cut.pl
+
+This is an extension of the connected program. It can be seen by the program execution that the cut operator stops the program from returning more than one output.
+This is because it prevents backtracking.
+Basically, we cannot use ; to generate more solutions.
+This is helpful to stop infinite recursion in some programs.
+
+For eg.- We can use ! after the connection recursive call and this way only the nearest connected city will be returned. This has been demonstrated in the program cut.pl.
+
+Here we have an undirected graph showing connections between various cities. If you remove the ! and execute the function, it keep on running without stopping.
+This is again due to A calling B and B calling A.
+To counter this, we use ! which only evaluates it once, no backtracking.
+This way, we get all the direct connections ( we only need direct connections in this program) and no extra repetition is also present.
+
+

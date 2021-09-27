@@ -1,0 +1,30 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations for the game I created using fltk graphics.
+
+In this game you have to reach the other side of the window using controls, ‘w’ ‘a’ ‘s’ and ‘d’ for upward, leftward, downward and rightward movement respectively.
+
+On the screen, there are a lot of other green widgets which you need to stay away from. Touching any green element is a foul and it would end the game. You would need to restart the game.
+
+The objective is to reach the bottom right corner, preventing the green buttons in the way, after which a “You Win!” message is shown.
+
+To implement this game I have made two classes, one class manages the game and checks for collisions and holds the information of the barrier buttons.
+The other class manages the playing button and its movements.
+
+The second class inherits from the Fl_Widget class and the draw and handle functions have been overloaded.
+
+
+
+The game is mainly to be played from the keyboard and uses the FL_KEYBOARD events.
+
+I wanted to include the factor of time and other aspects like creating widgets during runtime, but fltk seems incapable of that.
+
+The Fl::run function is a black box and there is not a lot I could do. I got segmentation faults about 100 times in the various approaches I tried to make the game more fun.
+
+It seems like keyboard control can be only for one widget at a time. Thus I could not create a full graphical program, with multiple moving parts.
+Accessing different objects is possible via a mouse, but there is a single click possible via a mouse and it's far too less compared to the number of keys on the keyboard.
+
+For the aspect of time as well, there existed the function timeout, which didn't allow passing arguments.
+
+Overall, I feel that this lab was somewhat limiting for me in terms of bringing out what I had in mind.
+I was hoping for something like initcanvas from CS101, but this seemed like a very different graphics program manager.
+
+Still, I have made a simple game which works fine and I hope I can implement other ideas in the future.

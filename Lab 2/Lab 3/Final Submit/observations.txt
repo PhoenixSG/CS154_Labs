@@ -1,0 +1,82 @@
+Hi! I am Shashwat Garg, 200050130. Below are my observations regarding the 4 stack implementations and the two systems I have made.
+
+model_1.cpp contains the data members of the stack as global variables, and the functions directly access that data.
+It doesn’t even allow us to make multiple stacks.
+This is not a good approach.
+This approach would fail terribly in case of a large program as we would not be able to keep track of all the variables and there would not be access specifier or scope limit.
+This style would be very prone to errors and debugging would also be very difficult. Thus, I don't think one should use such ideas in programming.
+
+model_2.cpp is based on the same ideology as model_1.cpp. It kind of shows the reasoning as to how model_1.cpp would fail in case the size and complexity of the program increases.
+model_2.cpp contains 2 stacks, with data of both stored as global variables, and functions which require us to pass large arguments in order to specify which dataset we want to modify or use.
+The code looks very messy and again, we only have 2 stacks. Creating more stacks requires a significant bit of code.
+
+model_3.cpp improves the situation as it packages all the data members of a stack into a struct.
+Now, creating new stacks is simpler and we also need not pass each and every data member of stack as an argument to the functions.
+We can just pass a pointer to the struct object and the function can do its job.
+Still here we have functions separated from the data members, ie., it is still a procedural programming paradigm and does not capture the characteristics of the stack completely.
+
+model_4.cpp follows the object oriented paradigm(OOP) and does a good job at abstraction of the properties and the proper operations possible on the stack.
+The access specifiers also limit the user’s ability to deal with the program and enforce using it in the way it was supposed to be used.
+This makes debugging much simpler due to its better design.
+The objects reflect the actual characteristics of the real-life objects in a much better manner, by capturing the properties of the real-life objects as proper abstraction into the program.
+
+Thus I feel that OOP does a much better job than Procedural Paradigm both at abstractions and implementation in case of Stack management.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Below are the observations for my queue.cpp program.
+
+Design-
+I have made a Queue class which stores the queue data in an array, and other data members, first, last and occupancy.
+There are two functions, namely add_person() and remove_person(), which do the required jobs.
+
+I am modelling the queue as a circular array, as after max capacity is reached, the counter reaches back to zero. This saves us from the extra copying of all values when the first person is removed.
+Visually, we don't need to shift everyone by one place if the first one is removed and we are also not wasting any space. This is modelling for efficient computation.This has been implemented using modulus function in the two functions.
+
+
+
+Implementation-
+Besides these basic functions, the program takes input from the user and calls the required functions. The output is not prewritten.
+The capacity of the queue is set to 1000 by default. It can be changed easily as it is defined as a macros at the beginning of the code.
+
+
+
+Observations-
+Using a class helps organising the data in a proper manner.
+The list of people in the queue and the first and last index serve as good abstract types for modelling the queue and enabling proper functioning.
+OOP keeps the data members safe and proper actions/functions of entering/exiting the queue are modelled into the program.
+The roll-over implementation of queue array leads to lower computational expenditure.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+These are the observations for my vendingmachine.cpp program.
+
+Design-
+I have made a VendingMachine class which stores the data about various drinks, chips and chocolates in an array for each along with the number of items available.
+It also has a data member to store the price of the whole transaction.
+
+The member functions help the user to select which item he wants to buy.
+Another one fetches the item from the inventory, updates the count, updates the price and redirects the customer to the selection stage in case the item is out of stock.
+Several functions manage price and give back the balance amount at the end of the transaction.
+
+
+
+Implementation-
+The program takes input from the user and calls the required functions. The output is not prewritten.
+The user enters some money into the machine. Then selects the required items.
+When he checks out, he is either given the items with the balance payment, or he is asked to repeat the cycle in case of insufficient money.
+
+
+
+Observations-
+The program captures the important properties of a vending machine like-
+Taking money before going to the order stage.
+Taking the selections one at a time.
+Giving an error if money is not sufficient and then requiring the user to start over.
+The data members store the amount of stuff available and the price due.
+The member functions also only allow the features that a real vending machine allows, like selection and fetching of items, alongwith price management.
+I feel that this program demonstrates a proper abstraction of an actual Vending Machine

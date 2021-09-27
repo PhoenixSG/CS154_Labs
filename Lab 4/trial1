@@ -1,0 +1,26 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <iostream>} {public global
+}
+
+class CFluidWindow {open
+} {
+  Function {CFluidFunction()} {open selected
+  } {
+    Fl_Window win_app {
+      label image_window open
+      xywh {965 330 635 445} type Double hide
+    } {
+      Fl_Box box_jpeg {
+        label label
+        image image_box xywh {130 26 385 303}
+      }
+      Fl_Button button_click {
+        label {Click to show image}
+        xywh {240 370 170 25}
+      }
+    }
+  }
+}

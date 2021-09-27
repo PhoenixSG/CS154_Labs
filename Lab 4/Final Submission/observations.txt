@@ -1,0 +1,37 @@
+Hello, I am Shashwat Garg, 200050130. Below are some of my observations regarding the 15 puzzle program and my code for the same.
+
+Design-
+I have designed 2 classes, MyButton and GameManager.
+
+The MyButton object holds the information about a single button and also has a pointer to the GameManager object as a data member.
+MyButton is a derived class from the base class of Fl_Button.
+Every MyButton object has a number associated with its label as a data member to enable functioning of the game.
+The usual functions of handle(int event), set_name(), get_name() are present.
+
+The GameManager class holds a 2-D array of MyButton pointers as its data members along with the information about the 16th button.
+This class has functions like check_ans() which checks if the puzzle has been solved and shuffle(), which shuffles the buttons.
+Also, a make_the_move() function.
+
+
+Implementation-
+
+All the code has been implemented inside the 2 classes and main() just puts together all the objects and displays them on the screen.
+
+The shuffle() function uses the srand() and rand() functions.
+check_ans() just checks if the puzzle is sorted and exits as soon as it finds an irregularity.
+make_the_move() makes a move if a swap is possible
+
+handle(int event) function checks for mouse click events and calls the make_the_move() function, supplying arguments about clicked button.
+The functions get_name and set_name are used throughout.
+
+Observations-
+
+This was a good program to code as it captures the idea of objects as state machines very nicely. We cannot make this game without understanding the correct abstractions of the puzzle.
+
+Had I made this game without using objects and classes, I would have used a lot of memory in each step and the program would just become very messy.
+I learnt about efficiently using 2 classes and understanding the wiring between two related classes, like in the lift program.
+
+The GUI interface of Fluid and FLTK also made the game very interesting to code and to play!
+GUI definitely makes the program more attractive to use as it creates the illusion of objects actually being present and further strengthens the OOP idea of capturing abstractions of real-life objects.
+
+This program was comparatively easier for me as compared to other labs. I feel that I have begun to get comfortable with the idea of classes and objects, and efficiently capturing them into the code.

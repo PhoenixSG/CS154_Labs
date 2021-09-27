@@ -1,0 +1,176 @@
+Hello, I am Shashwat Garg, 200050130.
+Below are my observations while coding and understanding the concept of recursions.
+This is for Lab 11, CS152, May 31 2021.
+
+
+
+
+1a.py-
+Write the function in python and check your output
+
+This was a simple program, just code in the recursive function and see it play.
+I observed that the initial answers are pretty small but recursion is very powerful in m.
+The increase in m greatly increases the depth of recursion and increasing n also increases the value
+
+Also, I read about this on the internet, about how Ackerman is not primitively recursive.
+This means that it cannot be described iteratively. It is pure recursion.
+I also read that, due to its definition in terms of very deep recursion, we can use it as a test of a compiler's ability to recurse.
+
+#print(ack(4,2))
+This gave error- RecursionError: maximum recursion depth exceeded in comparison
+Recursion Grows so rapidly, the last answer is supposed to be 19,729 digits long. Huge!, which no computer can calculate
+
+
+
+
+
+
+
+1b.py- 
+Count total no. of calls made to ackerman.
+
+This was also simple. I made a variable (count) which stored the information about the number of calls.
+I also reset the count variable, after result was displayed to enable reuse
+
+Also, I added some code where you can input your own values to get whichver ackerman function you want to calculate
+Its not hardcoded
+
+We cannot calculate ackermann of numbers with m>3 using plain recursion, lets try memoization in the next step
+
+
+
+
+
+
+
+1c.py- 
+Count total no. of calls for each recursive instance of ackerman (k1,k2) where k1 and k2 are specific combinations
+
+This was simple. I made a dictionary (count) which stored the information about the number of calls.
+I used indices as strings of the form m,n
+I also reset the count variable, after result was displayed, to enable reuse
+
+We still cannot calculate ackermann of numbers with m>3 using plain recursion.
+Here, we are just storing the number of calls, not the value of each call.
+Lets do that in the next step to avoid the familiar error of--> RecursionError: maximum recursion depth exceeded while getting the str of an object
+
+
+
+
+
+
+
+1d.py- 
+Try to reduce these calls by saving the results once computed in a table, and instead of making a call, return the result from the table.
+Now print the no. of calls and no. of table lookups.
+
+We now use 2 dictionaries to keep track of the number of calls as well as the values of ack functions
+I used indices as strings of the form m,n
+Both dictionaries are reset, after result was displayed, to enable reuse
+
+Mainly, Ackermann function has been changed, now whichever values needs to be calculated, first gets assigned to values dictionary and then gets returned.
+Also, the program checks for value already being present. This prevents over, repeated calculation.
+
+This is the principle of Memoization.
+
+This is much better. The total number of calls has reduced greatly.
+As an example, Earlier, we had 2432 calls for ack(3,3). Now it is just 186.
+
+There is improvement for m=3, We can now calculate ack(3,7) and ack(3,8), which werent possible earlier, due to recursion depth overflow
+Similarly, the argument range for n for m=2 is increased
+
+This is a good improvement, but still we still cannot calculate ackermann of numbers with m>3 using plain recursion.
+This is probably because ackermann function for m=4 brings in such a large such a large 
+
+
+
+
+
+
+
+1e.py- 
+Implement the table lookup technique in 4 above for a recursive fibonacci implementation, and see
+if it improves the computer's ability to compute in some sense.
+
+Here I use 2 fibonacci functions. One is normal recursion while other uses memoization.
+Normal one makes way many calls and also runs very slowly due to repeated calculation of the same thing.
+As an example, for n=34, for normal recursion, we have 11405773 calls. Now it is just 65.
+
+You can even try un-commenting out the normalfibonacci call, to get idea of time difference
+
+In summary, Memoization is a very useful technique
+
+
+
+
+
+
+
+
+cross.py- 
+I recursively pop each element of l1 in each call from l1 and make a list with each element of l2 using this.
+This list is then returned as answer alongwith the next recursion call with slightly smaller l1 this time.
+
+This ultimately chops down l1 one by one and keeps on adding the elements of the cartesian product to the final list.
+The base case is when l1 is empty and there recursion is finally stopped.
+The cascading effect follows and the final cross product is returned as a single list.
+
+This is an elegant program, demostrating applicatio of recursion on iterative systems
+
+
+
+
+
+
+reverse.py- 
+This is a program which is much simpler through iterative apporach but recursive also works fine.
+In each step we pop the topmost element and make it into a list.
+We then return that list and add to it another call to the same reverse function.
+
+The base case is when l is empty and there recursion is finally stopped.
+
+Again, the cascading effect follows and the final reversed list is returned.
+
+
+
+
+
+
+
+sub.py-
+This is a program which is simpler to solve in recursion. We consider only contiguous subsegments here.
+
+The base case is when l1 is longer than l2, and when they both are equal.
+Otherwise, the recursive call is with 2 slices of l2, the first without first element and the second without the last element.
+These two calls are returned and whichever returns a non-empty list is displayed.
+
+This was we find if l1 is a sublist inside l2
+
+
+
+
+
+
+
+perms.py-
+This was a difficult problem. I dont think this can be done easily without recursion.
+
+The base cases are the ones with length of list as 0 or 1.
+The recursive step is to take a single element from the list and put it in front of the list and call perm on the remaining list.
+
+These all are appended with each other and added to the main answer array to create a BIG final array of all permutation in the end.
+
+This way we implement this problem using recursion.
+
+
+
+
+
+
+
+
+
+
+Both reverse and sub are functions not suppposed to be recursive.
+They are iterative fucntions and this is reflected in their recursive implementation as well
+

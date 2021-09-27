@@ -1,0 +1,66 @@
+Hi! I am Shashwat Garg, 200050130. This is a small introduction to my singlelift.cpp program.
+
+I have implemented two classes namely lift and person. I have implemented person class instead of level as it made more sense to create an abstraction for individual people moving in and out of the lift rather than whole levels.
+
+The single lift moves from floor 0 to floor 6 then back to floor 0 and so on. The input is not predetermined. The user can add people on levels as and when he likes and can also see the lift moving step by step. Various outputs on the terminal keep the user aware of the happenings inside the system.
+
+The person class has members like current_floor, requested_floor, going up or down, inside or outside.
+The lift class has the data members of current_floor, number of people in the lift, direction of motion.
+
+Both the classes have several functions which call each other so that proper coherence is maintained. The status of person objects are entirely stored within person object data members and the lift details are entirely stored within lift objects.
+There is no extra function in the code apart from the member functions.
+
+The main function contains a loop of switch statements where the user can add a new person on a level, make the lift move one step or exit.
+All the data members are private and can only be changed using member functions.
+
+Features-
+A limit of 5 persons at a time in the lift has been put, as a realistic constraint.
+People may join at any level and leave at any level.
+Multiple people may join/leave, while someone is still in the lift.
+On every level, first people who want to leave exit and then new people enter, Thus maximising capacity and modelling realistic scenarios.
+There is no predetermined notion of stopping at a level since the user decides when lift takes the next step.
+
+
+The format is-
+For adding a person-            p person_name source_floor destination_floor
+For moving the lift one step-   m
+For quitting the program-       q
+
+
+
+
+Self Assessment- This Lab assignment was like a full CS101 Project and I am happy that I have been able to implement a basic model of a system of lifts. Given some more time, I have a lot of ideas which would have further enhanced the applications of the model.
+I think I have chosen the abstractions correctly and the program handles inputs well. This choice also enabled me to give proper output at different parts of code, which finally gave comprehensive information about the status of the lift at the end of each step.
+In this program, I felt that I have gotten better at translating what I am thinking, into the code.
+
+I was stuck in the middle because I was not able to comprehend my code very well, but finally I was able to finish successfully. I need to practice more so that I handle several hundred lines of code at once more easily.
+
+Limitations- 
+There is a limit of 100 people since I use an array to store people's names and indexes.
+The lift moves only in a prespecified manner since coding an algorithm for movement decisions required more time, and I was not able to do that before the deadline.
+The lift moves on the command of the user since I have not implemented the notion of time inside the code, again due to time constraints of the deadline.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+This is a small introduction to my twolifts.cpp program.
+
+Please read the singlelift introduction before moving forward. Thank You!
+
+Data members- I have added identifiers to the lift and the person also has a data member representing which lift he is boarding.
+Member functions- I have only added functions which handle these new identifier data types.
+
+The movement of the lifts still remains the same, it traverses from one end to another, handling queries in between.
+
+I am not very satisfied with my code of twolifts.cpp. I lost on time. I was not able to add new functions and movement algorithms, due to submission deadline.
+
+I have managed to make the lifts move in opposite directions at all times for maximum effective coverage of all floors.
+The basic stuff like, a single person boards only one lift at a time and other realistic things have been added.
+
+The output now shows details about both the lifts after each command.
+
+
+
+Thank You very much for reading.
+Shashwat Garg

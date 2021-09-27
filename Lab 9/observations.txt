@@ -1,0 +1,209 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations while improving and understanding the concept of expressions and operators in C++. This is for Lab 9, CS152, 2021.
+
+
+complex.cpp -
+
+The overloaded + operator shows how we can use operator overloading in C++ to make the same operator work for non-default data types.
+Especially advanced mathematical objects like Complex numbers are seamlessly transferred into programs by this method.
+
+I have added the -, *, / operators to the class.
+
+By experimenting we get to know that all the basic mathematical operators like +, -, * and / follow left to right associativity.
+Also, the precedence rules are being followed in the expected manner, without the need of specifying that to the compiler. It follows the predefined precedence order.
+Also, by definition the +, * are commutative while /, - are not.
+
+Thus, with this program, we learnt about user defined operators, cascading of expressions, associativity and basic rules of precedence.
+
+
+
+
+
+collection.cpp -
+
+I have mainly added 2 features to this program.
+
+1. A bulk insertion operation to class collection which will merge another collection into it.
+This is the same overloaded operator << which concatenates another collection into the receiver if there is sufficient space available for the same.
+Otherwise we print an error message.
+
+2. A >> operator to class collection to fetch elements from it (following LIFO). This removes the topmost element from the Collection and stores it in the passed (by reference) variable.
+
+Both these can be cascaded (shown in program) since we return the object by reference (using & in return type).
+I observed that both >> and << follow left to right associativity.
+
+Thus, this is how we can use overloaded operators to simplify writing expressions of classes.
+
+
+
+
+
+
+exceptions.cpp -
+
+I have added another set of exceptions to this program. Now the array not only checks for valid indexes but also valid values.
+There is a conventional range set, from -3000 to 3000 and trying to put any value out of this range in the array throws an exception.
+
+I am using the same OutofBound class to handle these exceptions. A new function named set_value handles these new exceptions.
+Also I have assigned error codes to each exception.
+Creating a dedicated class like OutofBound for all exceptions also makes it easier to handle and display errors. I feel that this is a professional way of handling exceptions.
+
+
+
+right-to-left.cpp -
+
+This program had a bug. The actual assignment statement was missing from the initial program. I have corrected that.
+
+I have also added a + operator and the program displays the interplay of the + and = operator. It turns out that + is evaluated first and only then the cascaded = are evaluated.
+Also, the associativity order of = is from right to left.
+
+The beginning of the program also hosts a number of riddly lines of code with unary addition operators and assignment operator cascaded over each other.
+I have added 2 more similar lines. What I understand from the output is that,
+
+The postfix operator only comes into effect when its assignment to the left side is done. Also, the postfix operator does not compile when it is on the left side of the assignment operator.
+This shows that the return value of the postfix operator is not the same as the object data type.
+
+The prefix operator is like an instant +1 to the variable and gets executed before any other operation like assignment. It is much clearer to deal with and also works well on both sides of the assignment operator.
+
+Thus we get the expected output of 
+112
+333
+334
+
+
+
+
+trythis1.cpp -
+
+This is the same program we discussed in class. I have added another layer of complexity by using the unary operators in the function body itself.
+The idea is now pretty clear.
+
+The main observations are- 
+
+The parameters are passed from right to left in the function.
+Postfix operator comes into effect after cout is executed and after the variable is passed
+The prefix operator, like always, immediately executes as soon as control reaches it.
+The postfix operator gets executed as soon as it sees the next << operator.
+Also, control flows from left to right in cout.
+
+
+
+
+
+trythis2.cpp -
+
+This is a very confusing program. To make the difference between parameter passing and simple cout clear, I have added a cout statement above each function imitating the function.
+
+The results are different.
+
+Initially we get this-
+12 11 12
+103 101 103
+
+After simply using cout, we get this-
+10 10 12
+101 101 103
+
+The cout behaviour is simple to understand as per my reasoning in the previous program above.
+
+The function behaviour is also simple once we understand a simple fact. The prefix operator waits for all prefix operators to execute before passing on its value as a parameter.
+Thus, as control moves from right to left, we observe that ++i increases i to 101, then i++ passes 101 first and increases to 102, then finally the leftmost ++i increases to 103 and increases the rightmost parameter to 103 as well.
+Thus, finally the arguments passed are 103, 101, 103.
+Hence shown
+
+This is a brilliant program displaying the intricacies of the unary operators and their behaviour.
+
+
+
+
+
+
+evaloder.cpp -
+
+This program demonstrates that the postfix operation actually gets executed after the whole function where it is passed gets returned or gets terminated.
+
+Simply here f(++p); means p+=1; f(p);
+while f(p++); means f(p); p+=1;
+
+Similarly f(--p); means p-=1; f(p);
+while f(p--); means f(p); p-=1;
+
+This is a very simple function showing the basic idea of prefix and postfix.
+Also, this is possible only when p is a global function or p is passed by reference.. Otherwise the variable p inside the function is just a copy and there is no effect on the returned value.
+Here we see the effect so clearly because p is a global variable and it is being passed as well as being returned.
+
+
+
+
+
+
+lval-rval.cpp -
+
+I have not edited this program, since it asked a question and asked for an explanation. This is a simple question. What it is asking was raised by me in a previous program as well.
+
+Basically, it asks why ++a can be lvalue for assignment operator (=) while a++ cannot be.
+
+First of all, there is no use whatsoever of writing ++a=b (say). Because ++a is evaluated first but whatever it evaluates to is overwritten by b.
+Thus, unless we have redefined = in some meaningful way for this case, ++a on the receiving end is useless. It does compile though correctly.
+
+a++ on the left side of = does not even compile. The reason is prefix returns by reference while postfix returns by value. Thus postfix cannot be a lvalue for assignment operator.
+
+Basically, with prefix we modify the object and then return it (so it can be lvalue), but with postfix we return the unchanged object (i.e. a copy) and only then update it,
+
+This whole thing is the reason as to why postfix can not be lvalue.
+
+Also, the reason why ++x=x++ evaluates to 10 when x was initially 10 is as follows-
+
+Being a postfix, rvalue passes 10 before incrementing and the value of x increases to 11.
+Now, we reach the left side of the expression the lvalue which has already been incremented to 11 gets incremented to 12 due to prefix.
+But this is of no use since the assignment operator finally does its job and assigns the passed value 10 to x.
+Thus, both the incrementation operations get sandwiched between assignment processes and finally x remains 10 as it is.
+
+
+
+
+
+why-it-fails.cpp -
+
+This is a simple example of where operator precedence causes errors and why we should always use parentheses to avoid errors.
+
+This happens because precedence of << is higher than ||.
+Thus || is not evaluated before << acts onto a. Then, the rest of the statement seems to be having an error.
+
+This can be easily solved by using a set of parentheses around a || b, like ( a||b) .
+
+
+
+
+
+postfixprefix.cpp -
+
+This program shows how to overload the prefix and postfix operators. This also shows the convention being followed in C++ to separate between prefix and postfix, and this also explains many of their characteristics.
+
+prefix does not take any arguments, it simply modifies the calling object.
+
+Postfix takes an argument. Though it does not use the argument, it shows how we dont use the exact object calling the function but instead use it by value and return an incremented value later.
+This is the reason why a++ cannot be lvalue of = as well.
+
+Also, some modification in the program shows how the argument in postfix operator ++ ie. c, always has value as 0 and I get the output as follows.
+
+
+
+prefix operator called 
+
+1
+postfix operator called 
+1
+postfix operator called 
+1
+postfix operator called 
+1
+postfix operator called 
+
+
+
+
+
+THE END.
+
+
+If you have been, thank you for reading!

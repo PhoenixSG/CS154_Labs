@@ -1,0 +1,61 @@
+Hello, I am Shashwat Garg, 200050130. Below are my observations for the improved game I created using fltk graphics.
+
+I have made the game more sophisticated by removing the handle function from the actual circles and instead creating buttons for control.
+Now, you can play either with a mouse, by pressing on the required buttons or simply with a keyboard by pressing the w,a,s,d keys.
+
+The original code had a bug where despite collision, the program didn't respond. This was due to handle function resetting the object upon calling.
+
+Also, in the original code, there was a bug where the handle function was not able to work with the collision detection,
+It gave the error of segmentation fault while using a pointer.
+
+To correct this I had to create an instance of GameManager inside MyCircle and pass the object by reference.
+This also gave errors.
+
+So I finally created a new class called MyButton and used it's handle() function to call the new move function of MyCircle class,
+which did the rest.
+
+There was another bug in the initial program where you could just remove the barrier coins by clicking on them.
+This has been corrected.
+
+The new MyButton class inherits the Fl_Button class and uses several predefined functions, some of which has been overloaded.
+
+I have spent a lot of time on this lab and I am happy to get a fully working program/game finally.
+
+A considerable amount of time was spent trying to somehow modify the black box run() function and insert my own modifications to make the game more interactive.
+But finally that idea needed to be dropped and I finally managed to make it work without it.
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Below are my initial observations, for the first submission.
+
+In this game you have to reach the other side of the window using controls, ‘w’ ‘a’ ‘s’ and ‘d’ for upward, leftward, downward and rightward movement respectively.
+
+On the screen, there are a lot of other green widgets which you need to stay away from. Touching any green element is a foul and it would end the game. You would need to restart the game.
+
+The objective is to reach the bottom right corner, preventing the green buttons in the way, after which a “You Win!” message is shown.
+
+To implement this game I have made two classes, one class manages the game and checks for collisions and holds the information of the barrier buttons.
+The other class manages the playing button and its movements.
+
+The second class inherits from the Fl_Widget class and the draw and handle functions have been overloaded.
+
+
+
+The game is mainly to be played from the keyboard and uses the FL_KEYBOARD events.
+
+I wanted to include the factor of time and other aspects like creating widgets during runtime, but fltk seems incapable of that.
+
+The Fl::run function is a black box and there is not a lot I could do. I got segmentation faults about 100 times in the various approaches I tried to make the game more fun.
+
+It seems like keyboard control can be only for one widget at a time. Thus I could not create a full graphical program, with multiple moving parts.
+Accessing different objects is possible via a mouse, but there is a single click possible via a mouse and it's far too less compared to the number of keys on the keyboard.
+
+For the aspect of time as well, there existed the function timeout, which didn't allow passing arguments.
+
+Overall, I feel that this lab was somewhat limiting for me in terms of bringing out what I had in mind.
+I was hoping for something like initcanvas from CS101, but this seemed like a very different graphics program manager.
+
+Still, I have made a simple game which works fine and I hope I can implement other ideas in the future.
